@@ -94,6 +94,7 @@ $bookings = $pdo->query("
                         <th>Participants</th>
                         <th>Total Price</th>
                         <th>Status</th>
+                        <th>Cancellation Request</th>
                         <th>Booked On</th>
                         <th>Actions</th>
                     </tr>
@@ -116,6 +117,16 @@ $bookings = $pdo->query("
                                     <option value="cancelled" <?= $booking['status'] == 'cancelled' ? 'selected' : '' ?>>Cancelled</option>
                                 </select>
                             </form>
+                        </td>
+                        <td>
+                            <?php if ($booking['cancellation_request']): ?>
+                                <span style="color: #f59e0b; font-weight: bold;">Requested</span>
+                                <br>
+                                <a href="approve_cancellation.php?id=<?= $booking['id'] ?>&action=approve" class="btn" style="background: #10b981; margin-top: 5px;">Approve</a>
+                                <a href="approve_cancellation.php?id=<?= $booking['id'] ?>&action=reject" class="btn" style="background: #ef4444; margin-top: 5px;">Reject</a>
+                            <?php else: ?>
+                                <span style="color: #10b981;">No</span>
+                            <?php endif; ?>
                         </td>
                         <td><?= date('M j, Y', strtotime($booking['created_at'])) ?></td>
                         <td>

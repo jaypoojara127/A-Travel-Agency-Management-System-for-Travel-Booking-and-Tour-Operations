@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['booking_id'], $_POST['
         $id = (int)$_POST['booking_id'];
         $status = $_POST['status'];
         
-        $stmt = $pdo->prepare("UPDATE bookings SET status = ? WHERE id = ?");
+        $stmt = $pdo->prepare("UPDATE bookings SET status = ?, cancellation_request = FALSE WHERE id = ?");
         $stmt->execute([$status, $id]);
         
         echo json_encode(['success' => true]);

@@ -145,8 +145,18 @@ $bookings = $stmt->fetchAll();
             color: #1a2a3a;
         }
         
-        .view-btn:hover {
-            background: #38b2ac;
+        .cancel-btn {
+            background: #ef4444;
+            color: #ffffff;
+        }
+        
+        .cancel-btn:hover {
+            background: #dc2626;
+        }
+        
+        .cancel-requested {
+            background: #f59e0b;
+            color: #ffffff;
         }
         
         .cancel-btn {
@@ -196,6 +206,23 @@ $bookings = $stmt->fetchAll();
     </style>
 </head>
 <body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">Tour Management</div>
+            <nav>
+                <ul>
+                    <li><a href="welcome.php">Home</a></li>
+                    <li><a href="tour_world.php">Tours</a></li>
+                    <li><a href="my_bookings.php">My Bookings</a></li>
+                    <li><a href="about.php">About Us</a></li>
+                    <li><a href="events.php">Events</a></li>
+                    <li><a href="contact.php">Contact</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
     <div class="container">
         <div class="bookings-container">
             <div class="page-header">
@@ -243,8 +270,10 @@ $bookings = $stmt->fetchAll();
                         
                         <div class="booking-actions">
                             <a href="view_booking.php?id=<?= $booking['id'] ?>" class="action-btn view-btn">View Details</a>
-                            <?php if ($booking['status'] == 'pending'): ?>
-                                <a href="cancel_booking.php?id=<?= $booking['id'] ?>" class="action-btn cancel-btn">Cancel</a>
+                            <?php if ($booking['status'] == 'pending' && !$booking['cancellation_request']): ?>
+                                <a href="cancel_booking.php?id=<?= $booking['id'] ?>" class="action-btn cancel-btn" onclick="return confirm('Are you sure you want to request cancellation?')">Request Cancellation</a>
+                            <?php elseif ($booking['cancellation_request']): ?>
+                                <span class="action-btn cancel-requested">Cancellation Requested</span>
                             <?php endif; ?>
                         </div>
                     </div>

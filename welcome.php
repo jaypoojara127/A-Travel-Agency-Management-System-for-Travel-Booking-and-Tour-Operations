@@ -18,6 +18,24 @@ $username = htmlspecialchars($_SESSION['user']);
 <body>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">Tour Management</div>
+            <nav>
+                <ul>
+                    <li><a href="welcome.php">Home</a></li>
+                    <li><a href="tour_world.php">Tours</a></li>
+                    <li><a href="my_bookings.php">My Bookings</a></li>
+                    <li><a href="about.php">About Us</a></li>
+                    <li><a href="events.php">Events</a></li>
+                    <li><a href="contact.php">Contact</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
 <div class="container">
     <div class="welcome-box">
         <h2>👋 Welcome, <?php echo $username; ?>!</h2>

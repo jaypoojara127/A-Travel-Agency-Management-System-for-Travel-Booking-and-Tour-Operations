@@ -3,5 +3,5 @@ git commit -m"create full travel project"
   git config --global user.name "Jaypoojara127"
   git add .
   git commit -m"create full travel project"
-  Sgit push
-  //9510216774//
+  git push
+  
